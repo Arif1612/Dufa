@@ -17,15 +17,13 @@ class UsersInfoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
-    public function list(Request $request)
+
+    public function list( )
     {
+        $user = UsersInfo::where('email', '=', Auth::user()->email)->first();
          $mission = UsersInfo::all();
-         return view('list', compact('mission'));
+         return view('memberlist', compact('mission','user'));
     }
     /**
      * Show the form for creating a new resource.
@@ -45,7 +43,6 @@ class UsersInfoController extends Controller
         $bloodgroup  =   $request->input('bloodgroup');
         $district  =   $request->input('district');
         $department  =   $request->input('department');
-        $query  =   $request->input('search');
         // $users = UsersInfo::where('name', 'LIKE', "%{$query}%");
         $users = UsersInfo::where('name', '=', $query)
             ->orWhere('email', 'LIKE', "$query")
