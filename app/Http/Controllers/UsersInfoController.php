@@ -23,7 +23,7 @@ class UsersInfoController extends Controller
     {
         $user = UsersInfo::where('email', '=', Auth::user()->email)->first();
          $mission = UsersInfo::all();
-         return view('memberlist', compact('mission','user'));
+         return view('list', compact('mission','user'));
     }
     /**
      * Show the form for creating a new resource.
